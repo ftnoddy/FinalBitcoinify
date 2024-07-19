@@ -1,9 +1,10 @@
+// server.js
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
-import userRoutes from './routes/userRoutes.js';
+import authRoutes from './routes/authRoutes.js' // Import auth routes
 
 dotenv.config();
 
@@ -17,7 +18,8 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/users', userRoutes);
+// Use auth routes
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
